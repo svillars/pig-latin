@@ -5,7 +5,13 @@ function translate(word) {
   //var vowels = /^[aeiou]/gi;
   //var consonants = /^[bcdfghjklmnpqrstvwxyz]+/gi;
   //var newList = [];
-  var vowels = ['a', 'e', 'i', 'o', 'u'];
+  var vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+
+  //The below statemtn handles words that start with a y.
+  if (word[0] === "y") {
+    var firstLetter = word[0];
+    return word.slice(1, word.length) + firstLetter + "ay";
+  }
 
   //The below statement handles words that start with vowels.
   if (vowels.indexOf(word[0]) != -1) {
@@ -27,6 +33,13 @@ function translate(word) {
     console.log(firstLetter);
     return word.slice(2, word.length) + firstLetter + secondLetter + "ay";
   }
+  //The below statement handles words that start with 3 consonants.
+  if ((vowels.indexOf(word[0]) === -1) && (vowels.indexOf(word[1]) === -1) && (vowels.indexOf(word[2]) === -1)) {
+    var firstLetter = word[0];
+    var secondLetter = word[1];
+    var thirdLetter = word[2];
+    return word.slice(3, word.length) + firstLetter + secondLetter + thirdLetter + "ay";
+  }
 
   //The below statement handles words that start with 2 consonants.
   if ((vowels.indexOf(word[0]) === -1) && (vowels.indexOf(word[1]) === -1)){
@@ -41,18 +54,15 @@ function translate(word) {
     return word.slice(1, word.length) + firstLetter + "ay";
   }
 
+};
 
-
-  // for (index = 0; index < splitSentence.length; index += 1) {
-  //   var splitWord = splitSentence[index].split('');
-  //   for (i = 0; i < splitWord.length; i += 1) {
-  //     if (splitWord[i].match(consonants)) {
-  //       newList1.push(splitWord);
-  //       console.log(newList1);
-  //     }
-  //   }
-  // }
-
+function sentence() {
+  for (index = 0; index < sentence.length; index += 1) {
+  var splitWord = splitSentence[index].split(' ');
+  var pigLatin = translate(splitWord);
+    }
+    console.log(pigLatin);
+}
   // for (index = 0; index < splitSentence.length; index += 1) {
   //   if (splitSentence[index].match(vowels)) {
   //     newList.push(splitSentence[index] + "ay");
@@ -71,15 +81,14 @@ function translate(word) {
   //     }
   //   }
   // }
-};
 
 
 // user logic
 
+var userInput = $("#blank").val();
 $(document).ready(function() {
   $("form").submit(function(event) {
     event.preventDefault();
-    var userInput = $("#blank").val();
     var translation = translate(userInput);
     $(".translation").show();
     $(".translation").text('hi');
