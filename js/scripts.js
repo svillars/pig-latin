@@ -56,13 +56,17 @@ function translate(word) {
 
 };
 
-function sentence() {
-  for (index = 0; index < sentence.length; index += 1) {
-  var splitWord = splitSentence[index].split(' ');
-  var pigLatin = translate(splitWord);
+function sentence(sentence) {
+  newList = []
+  var splitWord = sentence.split(' ');
+  for (index = 0; index < splitWord.length; index += 1) {
+    var pigLatin = translate(splitWord[index]);
+    newList.push(pigLatin);
+    console.log(newList.join(' '));
+
     }
-    console.log(pigLatin);
-}
+
+};
   // for (index = 0; index < splitSentence.length; index += 1) {
   //   if (splitSentence[index].match(vowels)) {
   //     newList.push(splitSentence[index] + "ay");
